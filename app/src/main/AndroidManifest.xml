@@ -19,6 +19,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SettingsScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_settings_screen"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".HighScoreScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_high_score_screen"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".GameScreen"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_game_screen"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,14 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -83,6 +85,9 @@ public class MainScreen extends AppCompatActivity {
         }
     };
 
+    private Button playButton;
+    private Button settingsButton;
+    private Button highScroesButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +111,34 @@ public class MainScreen extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        /** Start of Main Code**/
+        playButton = (Button)findViewById(R.id.playButton);
+        settingsButton = (Button)findViewById(R.id.settingsButton);
+        highScroesButton = (Button)findViewById(R.id.highScoreButton);
+
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainScreen.this, GameScreen.class));
+
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainScreen.this, SettingsScreen.class));
+            }
+        });
+
+        highScroesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainScreen.this, HighScoreScreen.class));
+            }
+        });
+
     }
 
     @Override

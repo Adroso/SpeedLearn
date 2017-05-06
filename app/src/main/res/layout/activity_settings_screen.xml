@@ -2,19 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#fff"
     tools:context="com.example.adroso360.speedlearn.SettingsScreen">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+    <Switch
+        android:text="Social Media"
+        android:id="@+id/socialSwitch"
+        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="200dp"/>
+
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="Settings Screen"
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />

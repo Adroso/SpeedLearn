@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg2"
+    android:background="@drawable/bgtwo"
     tools:context="com.example.adroso360.speedlearn.HighScoreScreen">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -26,10 +26,6 @@
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

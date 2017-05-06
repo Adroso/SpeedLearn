@@ -9,9 +9,16 @@
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
     <Switch
+        android:text="Game Music"
+        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="150dp" />
+
+    <Switch
         android:text="Social Media"
         android:id="@+id/socialSwitch"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_width="300dp"
         android:layout_gravity="center"
         android:layout_marginBottom="200dp"/>

@@ -128,6 +128,7 @@ public class GameScreen extends AppCompatActivity {
 
                 countDown.setText("GO!");
 
+                //Delays the clearing of countdown text by .5 seconds.
                 countDown.postDelayed(new Runnable(){
                     @Override
                     public void run()

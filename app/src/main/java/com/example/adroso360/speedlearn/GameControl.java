@@ -6,7 +6,6 @@ package com.example.adroso360.speedlearn;
  */
 
 public class GameControl {
-    private static String builtEquation;
     public static String[] getEquation (){
         /** This function  will return a random equation with answer
          * from the question bank for the GUI to display

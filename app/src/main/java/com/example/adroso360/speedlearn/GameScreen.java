@@ -118,24 +118,27 @@ public class GameScreen extends AppCompatActivity {
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
         countDown = (TextView)findViewById(R.id.countDown);
 
-        new CountDownTimer(4000, 1000) {
+        new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 countDown.setText(String.valueOf(millisUntilFinished/1000));
             }
 
             public void onFinish() {
-                try {
-                    countDown.setText("GO!");
-                    Thread.sleep(1000);
-                    countDown.setText("");
-                    countDown.setVisibility(View.GONE);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+                countDown.setText("GO!");
+
+                countDown.postDelayed(new Runnable(){
+                    @Override
+                    public void run()
+                    {
+                        countDown.setVisibility(View.GONE);
+                    }
+                }, 500);
 
             }
         }.start();
+
 
         String[] generatedQuestion = GameControl.getEquation();
         currentQuestion.setText(generatedQuestion[0]);

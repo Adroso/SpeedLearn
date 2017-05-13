@@ -136,17 +136,24 @@ public class GameScreen extends AppCompatActivity {
                         countDown.setVisibility(View.GONE);
                         String[] generatedQuestion = GameControl.getEquation();
                         currentQuestion.setText(generatedQuestion[0]);
+                        //phseudocode
+
+                        //game on
+                        //Start a stopwatch timer
+                        //while game on
+                        //get generated question
+                        //Listeners for player buttons and enter button
+                        //if player answer = generatedQuestion[1] add a point
+                        //else no point
+                        // LOOOP
+                        //loop for 10 times
+                        //record time when player finishes 10 loops
+                        // put time into database.
                     }
                 }, 500);
 
             }
         }.start();
-
-
-//        String[] generatedQuestion = GameControl.getEquation();
-//        currentQuestion.setText(generatedQuestion[0]);
-
-
 
     }
 

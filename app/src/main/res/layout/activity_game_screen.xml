@@ -22,6 +22,12 @@
             android:textSize="24sp" />
 
         <TextView
+            android:text="Find The Value Of y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5" />
+
+        <TextView
             android:text="30 x 54?"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

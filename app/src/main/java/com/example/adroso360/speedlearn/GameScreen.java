@@ -1,6 +1,8 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.icu.util.TimeUnit;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,6 +88,7 @@ public class GameScreen extends AppCompatActivity {
 
 
     public TextView currentQuestion;
+    private TextView countDown;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,7 +114,29 @@ public class GameScreen extends AppCompatActivity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         /** Game Code **/
+
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
+        countDown = (TextView)findViewById(R.id.countDown);
+
+        new CountDownTimer(4000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                countDown.setText(String.valueOf(millisUntilFinished/1000));
+            }
+
+            public void onFinish() {
+                try {
+                    countDown.setText("GO!");
+                    Thread.sleep(1000);
+                    countDown.setText("");
+                    countDown.setVisibility(View.GONE);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
+
         String[] generatedQuestion = GameControl.getEquation();
         currentQuestion.setText(generatedQuestion[0]);
 

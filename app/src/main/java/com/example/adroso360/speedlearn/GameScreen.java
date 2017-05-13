@@ -134,6 +134,8 @@ public class GameScreen extends AppCompatActivity {
                     public void run()
                     {
                         countDown.setVisibility(View.GONE);
+                        String[] generatedQuestion = GameControl.getEquation();
+                        currentQuestion.setText(generatedQuestion[0]);
                     }
                 }, 500);
 
@@ -141,8 +143,8 @@ public class GameScreen extends AppCompatActivity {
         }.start();
 
 
-        String[] generatedQuestion = GameControl.getEquation();
-        currentQuestion.setText(generatedQuestion[0]);
+//        String[] generatedQuestion = GameControl.getEquation();
+//        currentQuestion.setText(generatedQuestion[0]);
 
 
 

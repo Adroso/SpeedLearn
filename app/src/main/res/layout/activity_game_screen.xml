@@ -28,7 +28,7 @@
             android:id="@+id/textView5" />
 
         <TextView
-            android:text="30 x 54?"
+            android:text="..."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/currentQuestion"

@@ -96,7 +96,7 @@ public class GameScreen extends AppCompatActivity {
     private TextView gameTime;
     private TextView playerAnswerDisplay;
     private String[] generatedQuestion;
-    private String playerInput;
+    private int questionCount;
     private int playerScore;
     //Buttons
     private Button button0;
@@ -233,7 +233,7 @@ public class GameScreen extends AppCompatActivity {
         buttonEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //updatePlayerInput("9");
+                evaluateAnswer((String) playerAnswerDisplay.getText());
             }
         });
 
@@ -363,11 +363,25 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void evaluateAnswer(String userAnswer){
-        if(generatedQuestion[1] == userAnswer){
-            System.out.println("Correct");
+        if (questionCount == 10){
+            playerAnswerDisplay.setText("Game Finished");
+            String tmpTime = String.valueOf(updatedTime);
+            currentQuestion.setText(tmpTime);
+
+        }else if(Objects.equals(generatedQuestion[1], userAnswer)){
+            //Correct
+            generatedQuestion = GameControl.getEquation();
+            currentQuestion.setText(generatedQuestion[0]);
+            playerAnswerDisplay.setText("");
+
         }else {
-            System.out.println("incorect");
+            //Incorrect
+            generatedQuestion = GameControl.getEquation();
+            currentQuestion.setText(generatedQuestion[0]);
+            playerAnswerDisplay.setText("");
+            System.out.println("INCORRECT");
         }
+        questionCount = questionCount + 1;
 
     }
 

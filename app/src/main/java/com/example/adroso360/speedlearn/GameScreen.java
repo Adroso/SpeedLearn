@@ -3,6 +3,7 @@ package com.example.adroso360.speedlearn;
 import android.annotation.SuppressLint;
 import android.icu.util.TimeUnit;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,6 +90,14 @@ public class GameScreen extends AppCompatActivity {
 
     public TextView currentQuestion;
     private TextView countDown;
+    private TextView gameTime;
+    //For Timer
+    private long startTime = 0L;
+    private Handler timerHandler = new Handler();
+    long timeInMilliseconds = 0L;
+    long timeSwapBuff = 0L;
+    long updatedTime = 0L;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,6 +126,7 @@ public class GameScreen extends AppCompatActivity {
 
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
         countDown = (TextView)findViewById(R.id.countDown);
+        gameTime = (TextView)findViewById(R.id.gameTime);
 
         new CountDownTimer(5000, 1000) {
 
@@ -137,6 +147,11 @@ public class GameScreen extends AppCompatActivity {
                         String[] generatedQuestion = GameControl.getEquation();
                         currentQuestion.setText(generatedQuestion[0]);
                         //phseudocode
+
+                        startTime = SystemClock.uptimeMillis();
+                        timerHandler.postDelayed(gameTimer, 0);
+
+
 
                         //game on
                         //Start a stopwatch timer
@@ -209,4 +224,23 @@ public class GameScreen extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+    private final Runnable gameTimer = new Runnable() {
+        public void run(){
+
+            timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
+            updatedTime = timeSwapBuff + timeInMilliseconds;
+            int secs = (int) (updatedTime / 1000);
+            int mins = secs / 60;
+            secs = secs % 60;
+            int milliseconds = (int) (updatedTime % 1000);
+            gameTime.setText("Time | " + mins + ":"
+                            + String.format("%02d", secs) + ":"
+                            + String.format("%03d", milliseconds));
+            timerHandler.postDelayed(this, 0);
+
+        }
+
+    };
 }
+

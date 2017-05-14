@@ -367,12 +367,14 @@ public class GameScreen extends AppCompatActivity {
             playerAnswerDisplay.setText("Game Finished");
             String tmpTime = String.valueOf(updatedTime);
             currentQuestion.setText(tmpTime);
+            timerHandler.removeCallbacks(gameTimer);
 
         }else if(Objects.equals(generatedQuestion[1], userAnswer)){
             //Correct
             generatedQuestion = GameControl.getEquation();
             currentQuestion.setText(generatedQuestion[0]);
             playerAnswerDisplay.setText("");
+            playerScore = playerScore + 1;
 
         }else {
             //Incorrect

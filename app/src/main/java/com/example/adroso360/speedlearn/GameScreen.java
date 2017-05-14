@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -91,6 +92,20 @@ public class GameScreen extends AppCompatActivity {
     public TextView currentQuestion;
     private TextView countDown;
     private TextView gameTime;
+    //Buttons
+    private Button button0;
+    private Button button1;
+    private Button button2;
+    private Button button3;
+    private Button button4;
+    private Button button5;
+    private Button button6;
+    private Button button7;
+    private Button button8;
+    private Button button9;
+    private Button buttonClear;
+    private Button buttonEnter;
+
     //For Timer
     private long startTime = 0L;
     private Handler timerHandler = new Handler();
@@ -127,6 +142,23 @@ public class GameScreen extends AppCompatActivity {
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
         countDown = (TextView)findViewById(R.id.countDown);
         gameTime = (TextView)findViewById(R.id.gameTime);
+
+        //NumButtons
+        buttonEnter = (Button) findViewById(R.id.buttonEnter);
+        buttonClear = (Button) findViewById(R.id.buttonClear);
+        button0 = (Button) findViewById(R.id.button0);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
+        button6 = (Button) findViewById(R.id.button6);
+        button7 = (Button) findViewById(R.id.button7);
+        button8 = (Button) findViewById(R.id.button8);
+        button9= (Button) findViewById(R.id.button9);
+
+
+
 
         new CountDownTimer(5000, 1000) {
 

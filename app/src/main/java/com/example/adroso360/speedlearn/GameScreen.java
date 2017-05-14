@@ -146,13 +146,13 @@ public class GameScreen extends AppCompatActivity {
                         countDown.setVisibility(View.GONE);
                         String[] generatedQuestion = GameControl.getEquation();
                         currentQuestion.setText(generatedQuestion[0]);
-                        //phseudocode
 
+                        //Starting the Timer
                         startTime = SystemClock.uptimeMillis();
                         timerHandler.postDelayed(gameTimer, 0);
 
 
-
+                        //phseudocode
                         //game on
                         //Start a stopwatch timer
                         //while game on
@@ -236,7 +236,7 @@ public class GameScreen extends AppCompatActivity {
             int milliseconds = (int) (updatedTime % 1000);
             gameTime.setText("Time | " + mins + ":"
                             + String.format("%02d", secs) + ":"
-                            + String.format("%03d", milliseconds));
+                             /** + String.format("%03d", milliseconds)**/);
             timerHandler.postDelayed(this, 0);
 
         }

@@ -166,6 +166,7 @@ public class GameScreen extends AppCompatActivity {
             public void onClick(View v) {
                 playerInput = playerInput + "0";
                 playerAnswerDisplay.setText(playerInput);
+                System.out.println("I WAS PRESSED?");
             }
         });
 

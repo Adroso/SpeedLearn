@@ -75,11 +75,11 @@
             android:textAlignment="center" />
 
         <TextView
-            android:text="Your Answer: "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/playerAnswerDisplay"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:textAlignment="center" />
 
     </LinearLayout>
 

@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -93,6 +95,7 @@ public class GameScreen extends AppCompatActivity {
     private TextView countDown;
     private TextView gameTime;
     private TextView playerAnswerDisplay;
+    private String[] generatedQuestion;
     private String playerInput;
     private int playerScore;
     //Buttons
@@ -164,9 +167,73 @@ public class GameScreen extends AppCompatActivity {
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playerInput = playerInput + "0";
-                playerAnswerDisplay.setText(playerInput);
-                System.out.println("I WAS PRESSED?");
+                updatePlayerInput("0");
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("1");
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("2");
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("3");
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("4");
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("5");
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("6");
+            }
+        });
+        button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("7");
+            }
+        });
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("8");
+            }
+        });
+        button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("9");
+            }
+        });
+        buttonClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePlayerInput("CLEAR");
+            }
+        });
+        buttonEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //updatePlayerInput("9");
             }
         });
 
@@ -187,7 +254,7 @@ public class GameScreen extends AppCompatActivity {
                     public void run()
                     {
                         countDown.setVisibility(View.GONE);
-                        String[] generatedQuestion = GameControl.getEquation();
+                        generatedQuestion = GameControl.getEquation();
                         currentQuestion.setText(generatedQuestion[0]);
 
                         //Starting the Timer
@@ -285,6 +352,24 @@ public class GameScreen extends AppCompatActivity {
         }
 
     };
+
+    private void updatePlayerInput(String inputChange){
+        if (Objects.equals(inputChange, "CLEAR")){
+            playerAnswerDisplay.setText("");
+        } else {
+            playerAnswerDisplay.setText(playerAnswerDisplay.getText() + inputChange);
+        }
+
+    }
+
+    private void evaluateAnswer(String userAnswer){
+        if(generatedQuestion[1] == userAnswer){
+            System.out.println("Correct");
+        }else {
+            System.out.println("incorect");
+        }
+
+    }
 
 }
 

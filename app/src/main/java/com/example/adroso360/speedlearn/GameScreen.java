@@ -236,7 +236,7 @@ public class GameScreen extends AppCompatActivity {
             int milliseconds = (int) (updatedTime % 1000);
             gameTime.setText("Time | " + mins + ":"
                             + String.format("%02d", secs) + ":"
-                             /** + String.format("%03d", milliseconds)**/);
+                              + String.format("%03d", milliseconds));
             timerHandler.postDelayed(this, 0);
 
         }

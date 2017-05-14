@@ -92,6 +92,9 @@ public class GameScreen extends AppCompatActivity {
     public TextView currentQuestion;
     private TextView countDown;
     private TextView gameTime;
+    private TextView playerAnswerDisplay;
+    private String playerInput;
+    private int playerScore;
     //Buttons
     private Button button0;
     private Button button1;
@@ -142,6 +145,7 @@ public class GameScreen extends AppCompatActivity {
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
         countDown = (TextView)findViewById(R.id.countDown);
         gameTime = (TextView)findViewById(R.id.gameTime);
+        playerAnswerDisplay = (TextView)findViewById(R.id.playerAnswerDisplay);
 
         //NumButtons
         buttonEnter = (Button) findViewById(R.id.buttonEnter);
@@ -157,9 +161,15 @@ public class GameScreen extends AppCompatActivity {
         button8 = (Button) findViewById(R.id.button8);
         button9= (Button) findViewById(R.id.button9);
 
+        button0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playerInput = playerInput + "0";
+                playerAnswerDisplay.setText(playerInput);
+            }
+        });
 
-
-
+        // Game Start CountDown Timer
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -274,5 +284,6 @@ public class GameScreen extends AppCompatActivity {
         }
 
     };
+
 }
 

@@ -40,7 +40,7 @@
             android:text="Your Answer: "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/playerAnswer"
+            android:id="@+id/playerAnswerDisplay"
             android:textSize="18sp" />
 
         <GridLayout
@@ -70,7 +70,9 @@
             <Button android:text="9"
                 android:id="@+id/button9" />
             <Button android:text="0"
-                android:id="@+id/button0" />
+                android:id="@+id/button0"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
 
             <Button
                 android:text="Enter"

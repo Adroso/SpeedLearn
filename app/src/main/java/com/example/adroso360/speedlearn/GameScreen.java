@@ -1,6 +1,7 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.icu.util.TimeUnit;
 import android.os.CountDownTimer;
@@ -362,6 +363,15 @@ public class GameScreen extends AppCompatActivity {
             //Write Score to Database
             scoresDB = new ScoresDbHelper(this);
             SQLiteDatabase db = scoresDB.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put("points", playerScore);
+            values.put("time", tmpTime);
+
+            // Insert the new row, returning the primary key value of the new row
+            long newRowId = db.insert("scores",null, values);
+            System.out.println(newRowId);
+
 
 
 

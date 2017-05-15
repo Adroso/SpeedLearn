@@ -19,7 +19,7 @@ public class ScoresDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE {scores} (_ID INTEGER PRIMARY KEY, points TEXT, time TEXT)");
+        db.execSQL("CREATE TABLE scores (_ID INTEGER PRIMARY KEY, points TEXT, time TEXT)");
     }
 
     @Override

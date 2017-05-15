@@ -118,36 +118,11 @@ public class HighScoreScreen extends AppCompatActivity {
         /** Code **/
         scoresDB = new ScoresDbHelper(this);
         SQLiteDatabase db = scoresDB.getReadableDatabase();
-        // Define a projection that specifies which columns from the database
-// you will actually use after this query.
-        String[] projection = {
-                //FeedEntry._ID,
-                FeedEntry.COLUMN_NAME_POINTS,
-                FeedEntry.COLUMN_NAME_TIME
-        };
 
-// Filter results WHERE "title" = 'My Title'
-        String selection = "";
-        String[] selectionArgs = {};
-
-// How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                FeedEntry.COLUMN_NAME_TIME + " DESC";
-
-        Cursor cursor = db.query(
-                FeedEntry.TABLE_NAME,                     // The table to query
-                projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
-        );
-
+        Cursor cursor = db.rawQuery("SELECT points FROM scores", null);
         List itemIds = new ArrayList<>();
         while(cursor.moveToNext()) {
-            long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(FeedEntry._ID));
+            String itemId = cursor.getString(0);
             itemIds.add(itemId);
         }
         cursor.close();

@@ -119,6 +119,9 @@ public class GameScreen extends AppCompatActivity {
     long timeSwapBuff = 0L;
     long updatedTime = 0L;
 
+    //DataBase
+    private ScoresDbHelper scoresDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

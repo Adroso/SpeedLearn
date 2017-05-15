@@ -5,4 +5,7 @@ package com.example.adroso360.speedlearn;
  */
 
 public class SocialHandler {
+    public static void postScoreToTweet(){
+
+    }
 }

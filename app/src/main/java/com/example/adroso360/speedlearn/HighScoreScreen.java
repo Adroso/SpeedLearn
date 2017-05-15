@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import com.example.adroso360.speedlearn.FeedReaderContract.FeedEntry;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +90,8 @@ public class HighScoreScreen extends AppCompatActivity {
     };
 
     private ScoresDbHelper scoresDB;
+    private TextView score1Points;
+    private TextView score1time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,17 +118,33 @@ public class HighScoreScreen extends AppCompatActivity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         /** Code **/
+
+        score1Points = (TextView)findViewById(R.id.score1Points);
+        score1time = (TextView)findViewById(R.id.score1Time);
         scoresDB = new ScoresDbHelper(this);
         SQLiteDatabase db = scoresDB.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT points FROM scores", null);
-        List itemIds = new ArrayList<>();
+        List storedPoints = new ArrayList<>();
         while(cursor.moveToNext()) {
-            String itemId = cursor.getString(0);
-            itemIds.add(itemId);
+            String itemPoints = cursor.getString(0);
+            storedPoints.add(itemPoints);
         }
         cursor.close();
-        System.out.println(itemIds);
+
+        Cursor cursorTime = db.rawQuery("SELECT time FROM scores", null);
+        List storedTime = new ArrayList<>();
+        while(cursorTime.moveToNext()) {
+            String itemTime = cursorTime.getString(0);
+            storedTime.add(itemTime);
+        }
+        cursor.close();
+
+        // Printing
+        score1time.setText(storedTime.toString());
+        score1Points.setText(storedPoints.toString());
+        System.out.println(storedPoints);
+        System.out.println(storedTime);
 
 
 

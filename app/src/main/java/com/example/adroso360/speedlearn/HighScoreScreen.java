@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,6 +146,7 @@ public class HighScoreScreen extends AppCompatActivity {
         score1Points.setText(storedPoints.toString());
         System.out.println(storedPoints);
         System.out.println(storedTime);
+        highScoreBuilder(storedPoints, storedTime);
 
 
 
@@ -202,5 +204,16 @@ public class HighScoreScreen extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    private void highScoreBuilder(List points, List times) {
+        ArrayList<String[]> listOfArrayList = new ArrayList<String[]>();
+
+
+        for (int i = 0; i < points.size(); i++) {
+            listOfArrayList.add(new String[]{points.get(i).toString(), times.get(i).toString()});
+            System.out.println(listOfArrayList.toString());
+
+        }
     }
 }

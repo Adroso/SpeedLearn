@@ -125,12 +125,12 @@ public class Authenticate extends AppCompatActivity {
 
             @Override
             public void onLoadResource(WebView view, String url) {
-                System.out.println(url);
+                //System.out.println(url);
                 if (url.startsWith("http://nebula-dev.com")) {
                     Uri uri = Uri.parse(url);
                     final String oauthVerifier = uri.getQueryParameter("oauth_verifier");
                     if (oauthVerifier != null) {
-                        System.out.println("authenticated!");
+                        //System.out.println("authenticated!");
                         Background.run(new Runnable() {
                             @Override
                             public void run() {

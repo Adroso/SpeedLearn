@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.icu.util.TimeUnit;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBar;
@@ -14,11 +13,10 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
+
 import android.widget.TextView;
 import java.util.Objects;
-import twitter4j.Query;
-import twitter4j.QueryResult;
-import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -103,11 +101,14 @@ public class GameScreen extends AppCompatActivity {
     public TextView currentQuestion;
     private TextView countDown;
     private TextView gameTime;
+    private TextView instructionText;
     private TextView playerAnswerDisplay;
     private String[] generatedQuestion;
     private int questionCount;
     private int playerScore;
+
     //Buttons
+    private GridLayout gridNumbers;
     private Button button0;
     private Button button1;
     private Button button2;
@@ -357,7 +358,7 @@ public class GameScreen extends AppCompatActivity {
             int mins = secs / 60;
             secs = secs % 60;
             int milliseconds = (int) (updatedTime % 1000);
-            gameTime.setText("Time | " + mins + ":"
+            gameTime.setText("Your Time | " + mins + ":"
                             + String.format("%02d", secs) + ":"
                               + String.format("%03d", milliseconds));
             timerHandler.postDelayed(this, 0);
@@ -381,6 +382,7 @@ public class GameScreen extends AppCompatActivity {
             String tmpTime = String.valueOf(updatedTime);
             currentQuestion.setText(tmpTime);
             timerHandler.removeCallbacks(gameTimer);
+            gameOver();
 
             //Write Score to Database
             scoresDB = new ScoresDbHelper(this);
@@ -425,13 +427,24 @@ public class GameScreen extends AppCompatActivity {
                     AccessToken accessToken = new AccessToken(token, secret);
                     twitter.setOAuthAccessToken(accessToken);
                     try {
-                        twitter.updateStatus("Hey I Scored " + playerScore + " On this!");
+                        twitter.updateStatus("Hey I Scored " + playerScore + " On SPEEDLEARN!");
                     } catch (TwitterException e) {
                         e.printStackTrace();
                     }
                 }
             });
         }
+    }
+
+    private void gameOver(){
+        gridNumbers = (GridLayout)findViewById(R.id.gridNumbers);
+        instructionText = (TextView)findViewById(R.id.instructionText);
+        instructionText.setVisibility(View.GONE);
+        gridNumbers.setVisibility(View.GONE);
+        buttonTwitter.setVisibility(View.VISIBLE);
+        currentQuestion.setText("You Got " + playerScore + " Questions");
+
+
     }
 
 }

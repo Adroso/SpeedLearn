@@ -57,7 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/gameTime"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="center"
+            android:paddingTop="10dp" />
 
         <TextView
             android:text="Find The Value Of y"
@@ -71,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/currentQuestion"
-            android:textSize="50sp"
+            android:textSize="45sp"
             android:textAlignment="center" />
 
         <TextView
@@ -81,6 +83,14 @@
             android:textSize="20sp"
             android:textAlignment="center" />
 
+        <Button
+            android:text="Post Score To Twitter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonTwitter"
+            android:gravity="center"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <GridLayout
@@ -89,7 +99,8 @@
         android:columnCount="3"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:paddingTop="100dp">
+        android:paddingTop="100dp"
+        android:id="@+id/gridNumbers">
 
         <Button android:text="1"
             android:id="@+id/button1" />
@@ -110,9 +121,7 @@
         <Button android:text="9"
             android:id="@+id/button9" />
         <Button android:text="0"
-            android:id="@+id/button0"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:id="@+id/button0" />
 
         <Button
             android:text="Enter"
@@ -127,14 +136,6 @@
 
 
     </GridLayout>
-
-    <Button
-        android:text="Twitter Submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonTwitter"
-        android:textAlignment="textStart"
-        android:layout_marginTop="400dp" />
 
     <TextView
         android:text="3"

@@ -1,12 +1,18 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import com.example.adroso360.speedlearn.FeedReaderContract.FeedEntry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -83,6 +89,8 @@ public class HighScoreScreen extends AppCompatActivity {
         }
     };
 
+    private ScoresDbHelper scoresDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +114,48 @@ public class HighScoreScreen extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        /** Code **/
+        scoresDB = new ScoresDbHelper(this);
+        SQLiteDatabase db = scoresDB.getReadableDatabase();
+        // Define a projection that specifies which columns from the database
+// you will actually use after this query.
+        String[] projection = {
+                //FeedEntry._ID,
+                FeedEntry.COLUMN_NAME_POINTS,
+                FeedEntry.COLUMN_NAME_TIME
+        };
+
+// Filter results WHERE "title" = 'My Title'
+        String selection = "";
+        String[] selectionArgs = {};
+
+// How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                FeedEntry.COLUMN_NAME_TIME + " DESC";
+
+        Cursor cursor = db.query(
+                FeedEntry.TABLE_NAME,                     // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+
+        List itemIds = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(FeedEntry._ID));
+            itemIds.add(itemId);
+        }
+        cursor.close();
+        System.out.println(itemIds);
+
+
+
+
     }
 
     @Override

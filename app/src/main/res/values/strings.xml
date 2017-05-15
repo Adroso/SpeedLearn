@@ -9,4 +9,6 @@
     <string name="title_activity_high_score_screen">HighScoreScreen</string>
 
     <string name="title_activity_game_screen">GameScreen</string>
+
+    <string name="title_activity_authenticate">Authenticate</string>
 </resources>

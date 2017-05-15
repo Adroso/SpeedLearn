@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.adroso360.speedlearn">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -35,6 +35,11 @@
             android:name=".GameScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_game_screen"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".Authenticate"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_authenticate"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

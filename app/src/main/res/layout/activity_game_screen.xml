@@ -128,6 +128,14 @@
 
     </GridLayout>
 
+    <Button
+        android:text="Twitter Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonTwitter"
+        android:textAlignment="textStart"
+        android:layout_marginTop="400dp" />
+
     <TextView
         android:text="3"
         android:layout_width="match_parent"

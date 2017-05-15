@@ -2,6 +2,7 @@ package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.icu.util.TimeUnit;
 import android.os.CountDownTimer;
@@ -14,8 +15,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.Objects;
+import twitter4j.Query;
+import twitter4j.QueryResult;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.auth.AccessToken;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -113,6 +120,7 @@ public class GameScreen extends AppCompatActivity {
     private Button button9;
     private Button buttonClear;
     private Button buttonEnter;
+    private Button buttonTwitter;
 
     //For Timer
     private long startTime = 0L;
@@ -123,6 +131,10 @@ public class GameScreen extends AppCompatActivity {
 
     //DataBase
     private ScoresDbHelper scoresDB;
+
+    //Twitter
+    private static final int AUTHENTICATE = 1;
+    Twitter twitter = TwitterFactory.getSingleton();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +166,7 @@ public class GameScreen extends AppCompatActivity {
         countDown = (TextView)findViewById(R.id.countDown);
         gameTime = (TextView)findViewById(R.id.gameTime);
         playerAnswerDisplay = (TextView)findViewById(R.id.playerAnswerDisplay);
+        buttonTwitter = (Button) findViewById(R.id.buttonTwitter);
 
         //NumButtons
         buttonEnter = (Button) findViewById(R.id.buttonEnter);
@@ -239,6 +252,15 @@ public class GameScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 evaluateAnswer((String) playerAnswerDisplay.getText());
+            }
+        });
+
+        //Twitter
+        buttonTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GameScreen.this, Authenticate.class);
+                startActivityForResult(intent, AUTHENTICATE);
             }
         });
 
@@ -391,6 +413,25 @@ public class GameScreen extends AppCompatActivity {
         }
         questionCount = questionCount + 1;
 
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+        if (requestCode == AUTHENTICATE && resultCode == RESULT_OK) {
+            Background.run(new Runnable() {
+                @Override
+                public void run() {
+                    String token = data.getStringExtra("access token");
+                    String secret = data.getStringExtra("access token secret");
+                    AccessToken accessToken = new AccessToken(token, secret);
+                    twitter.setOAuthAccessToken(accessToken);
+                    try {
+                        twitter.updateStatus("Hey I Scored " + playerScore + " On this!");
+                    } catch (TwitterException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
 }

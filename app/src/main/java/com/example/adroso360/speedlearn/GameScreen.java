@@ -1,6 +1,7 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.database.sqlite.SQLiteDatabase;
 import android.icu.util.TimeUnit;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -263,20 +264,6 @@ public class GameScreen extends AppCompatActivity {
                         //Starting the Timer
                         startTime = SystemClock.uptimeMillis();
                         timerHandler.postDelayed(gameTimer, 0);
-
-
-                        //phseudocode
-                        //game on
-                        //Start a stopwatch timer
-                        //while game on
-                        //get generated question
-                        //Listeners for player buttons and enter button
-                        //if player answer = generatedQuestion[1] add a point
-                        //else no point
-                        // LOOOP
-                        //loop for 10 times
-                        //record time when player finishes 10 loops
-                        // put time into database.
                     }
                 }, 500);
 
@@ -371,6 +358,12 @@ public class GameScreen extends AppCompatActivity {
             String tmpTime = String.valueOf(updatedTime);
             currentQuestion.setText(tmpTime);
             timerHandler.removeCallbacks(gameTimer);
+
+            //Write Score to Database
+            scoresDB = new ScoresDbHelper(this);
+            SQLiteDatabase db = scoresDB.getWritableDatabase();
+
+
 
         }else if(Objects.equals(generatedQuestion[1], userAnswer)){
             //Correct

@@ -1,12 +1,14 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Switch;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -83,6 +85,8 @@ public class SettingsScreen extends AppCompatActivity {
         }
     };
 
+    private Switch socialSwitch;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +109,23 @@ public class SettingsScreen extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
+
+        socialSwitch = (Switch)findViewById(R.id.socialSwitch);
+        final SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
+        editor.putBoolean("socialOption", true );
+        socialSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (socialSwitch.isChecked()){
+                    editor.putBoolean("socialOption", true );
+                } else {
+                    editor.putBoolean("socialOption", true );
+                }
+
+            }
+        });
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
     }
 
     @Override

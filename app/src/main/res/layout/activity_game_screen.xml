@@ -91,6 +91,14 @@
             android:gravity="center"
             android:visibility="gone" />
 
+        <Button
+            android:text="Main Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonMenu"
+            android:gravity="center"
+            android:visibility="gone" />
+
     </LinearLayout>
 
     <GridLayout

@@ -122,6 +122,7 @@ public class GameScreen extends AppCompatActivity {
     private Button buttonClear;
     private Button buttonEnter;
     private Button buttonTwitter;
+    private Button buttonMenu;
 
     //For Timer
     private long startTime = 0L;
@@ -168,6 +169,7 @@ public class GameScreen extends AppCompatActivity {
         gameTime = (TextView)findViewById(R.id.gameTime);
         playerAnswerDisplay = (TextView)findViewById(R.id.playerAnswerDisplay);
         buttonTwitter = (Button) findViewById(R.id.buttonTwitter);
+        buttonMenu = (Button)findViewById(R.id.buttonMenu);
 
         //NumButtons
         buttonEnter = (Button) findViewById(R.id.buttonEnter);
@@ -262,6 +264,14 @@ public class GameScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(GameScreen.this, Authenticate.class);
                 startActivityForResult(intent, AUTHENTICATE);
+            }
+        });
+
+        buttonMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GameScreen.this, MainScreen.class));
+
             }
         });
 
@@ -442,6 +452,7 @@ public class GameScreen extends AppCompatActivity {
         instructionText.setVisibility(View.GONE);
         gridNumbers.setVisibility(View.GONE);
         buttonTwitter.setVisibility(View.VISIBLE);
+        buttonMenu.setVisibility(View.VISIBLE);
         currentQuestion.setText("You Got " + playerScore + " Questions");
 
 

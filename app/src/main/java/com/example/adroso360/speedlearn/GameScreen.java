@@ -450,12 +450,14 @@ public class GameScreen extends AppCompatActivity {
     private void gameOver(){
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean socialSetting = prefs.getBoolean("socialOption", true);
-        System.out.println("Current Social Setting is:" + socialSetting);
+
         gridNumbers = (GridLayout)findViewById(R.id.gridNumbers);
         instructionText = (TextView)findViewById(R.id.instructionText);
         instructionText.setVisibility(View.GONE);
         gridNumbers.setVisibility(View.GONE);
-        buttonTwitter.setVisibility(View.VISIBLE);
+        if (socialSetting){
+            buttonTwitter.setVisibility(View.VISIBLE);
+        }
         buttonMenu.setVisibility(View.VISIBLE);
         currentQuestion.setText("You Got " + playerScore + " Questions");
 

@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.hardware.SensorManager;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBar;
@@ -138,6 +139,7 @@ public class GameScreen extends AppCompatActivity {
     //Twitter
     private static final int AUTHENTICATE = 1;
     Twitter twitter = TwitterFactory.getSingleton();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -455,10 +457,12 @@ public class GameScreen extends AppCompatActivity {
         instructionText = (TextView)findViewById(R.id.instructionText);
         instructionText.setVisibility(View.GONE);
         gridNumbers.setVisibility(View.GONE);
+
         if (socialSetting){
             buttonTwitter.setVisibility(View.VISIBLE);
         }
         buttonMenu.setVisibility(View.VISIBLE);
+
         currentQuestion.setText("You Got " + playerScore + " Questions");
 
 

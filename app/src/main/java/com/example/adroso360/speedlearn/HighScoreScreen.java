@@ -159,16 +159,21 @@ public class HighScoreScreen extends AppCompatActivity {
         cursor.close();
 
         // Printing
-        score1Points.setText(storedPoints.get(0).toString());
-        score1time.setText(timeStringBuilder(String.valueOf(storedTime.get(0))));
-        score2Points.setText(storedPoints.get(1).toString());
-        score2time.setText(timeStringBuilder(String.valueOf(storedTime.get(1))));
-        score3Points.setText(storedPoints.get(2).toString());
-        score3time.setText(timeStringBuilder(String.valueOf(storedTime.get(2))));
-        score4Points.setText(storedPoints.get(3).toString());
-        score4time.setText(timeStringBuilder(String.valueOf(storedTime.get(3))));
-        score5Points.setText(storedPoints.get(4).toString());
-        score5time.setText(timeStringBuilder(String.valueOf(storedTime.get(4))));
+        try{
+            score1Points.setText(storedPoints.get(0).toString());
+            score1time.setText(timeStringBuilder(String.valueOf(storedTime.get(0))));
+            score2Points.setText(storedPoints.get(1).toString());
+            score2time.setText(timeStringBuilder(String.valueOf(storedTime.get(1))));
+            score3Points.setText(storedPoints.get(2).toString());
+            score3time.setText(timeStringBuilder(String.valueOf(storedTime.get(2))));
+            score4Points.setText(storedPoints.get(3).toString());
+            score4time.setText(timeStringBuilder(String.valueOf(storedTime.get(3))));
+            score5Points.setText(storedPoints.get(4).toString());
+            score5time.setText(timeStringBuilder(String.valueOf(storedTime.get(4))));
+        } catch (Exception e){
+            System.out.println("Empty Entries in DB");
+        }
+
     }
 
     @Override

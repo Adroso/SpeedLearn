@@ -99,6 +99,8 @@ public class HighScoreScreen extends AppCompatActivity {
     private TextView score3time;
     private TextView score4Points;
     private TextView score4time;
+    private TextView score5Points;
+    private TextView score5time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +136,8 @@ public class HighScoreScreen extends AppCompatActivity {
         score3time = (TextView)findViewById(R.id.score3Time);
         score4Points = (TextView)findViewById(R.id.score4Points);
         score4time = (TextView)findViewById(R.id.score4Time);
+        score5Points = (TextView)findViewById(R.id.score5Points);
+        score5time = (TextView)findViewById(R.id.score5Time);
 
         scoresDB = new ScoresDbHelper(this);
         SQLiteDatabase db = scoresDB.getReadableDatabase();
@@ -163,19 +167,8 @@ public class HighScoreScreen extends AppCompatActivity {
         score3time.setText(timeStringBuilder(String.valueOf(storedTime.get(2))));
         score4Points.setText(storedPoints.get(3).toString());
         score4time.setText(timeStringBuilder(String.valueOf(storedTime.get(3))));
-
-
-
-
-//        score1time.setText(storedTime.toString());
-//        score1Points.setText(storedPoints.toString());
-        System.out.println(storedPoints);
-        System.out.println(storedTime);
-        //highScoreBuilder(storedPoints, storedTime);
-
-
-
-
+        score5Points.setText(storedPoints.get(4).toString());
+        score5time.setText(timeStringBuilder(String.valueOf(storedTime.get(4))));
     }
 
     @Override
@@ -238,7 +231,6 @@ public class HighScoreScreen extends AppCompatActivity {
         secs = secs % 60;
         String newTime = ("" + mins + "m "
                 + String.format("%02d", secs) + "s ");
-        System.out.println(newTime);
 
        return newTime;
     }

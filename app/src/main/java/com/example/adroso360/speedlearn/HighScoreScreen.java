@@ -93,6 +93,12 @@ public class HighScoreScreen extends AppCompatActivity {
     private ScoresDbHelper scoresDB;
     private TextView score1Points;
     private TextView score1time;
+    private TextView score2Points;
+    private TextView score2time;
+    private TextView score3Points;
+    private TextView score3time;
+    private TextView score4Points;
+    private TextView score4time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +128,17 @@ public class HighScoreScreen extends AppCompatActivity {
 
         score1Points = (TextView)findViewById(R.id.score1Points);
         score1time = (TextView)findViewById(R.id.score1Time);
+        score2Points = (TextView)findViewById(R.id.score2Points);
+        score2time = (TextView)findViewById(R.id.score2Time);
+        score3Points = (TextView)findViewById(R.id.score3Points);
+        score3time = (TextView)findViewById(R.id.score3Time);
+        score4Points = (TextView)findViewById(R.id.score4Points);
+        score4time = (TextView)findViewById(R.id.score4Time);
+
         scoresDB = new ScoresDbHelper(this);
         SQLiteDatabase db = scoresDB.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT points FROM scores", null);
+        Cursor cursor = db.rawQuery("SELECT points FROM scores ORDER BY points DESC", null);
         List storedPoints = new ArrayList<>();
         while(cursor.moveToNext()) {
             String itemPoints = cursor.getString(0);
@@ -133,7 +146,7 @@ public class HighScoreScreen extends AppCompatActivity {
         }
         cursor.close();
 
-        Cursor cursorTime = db.rawQuery("SELECT time FROM scores", null);
+        Cursor cursorTime = db.rawQuery("SELECT time FROM scores ORDER BY points DESC", null);
         List storedTime = new ArrayList<>();
         while(cursorTime.moveToNext()) {
             String itemTime = cursorTime.getString(0);
@@ -142,8 +155,20 @@ public class HighScoreScreen extends AppCompatActivity {
         cursor.close();
 
         // Printing
-        score1time.setText(storedTime.toString());
-        score1Points.setText(storedPoints.toString());
+        score1Points.setText(storedPoints.get(0).toString());
+        score1time.setText(timeStringBuilder(String.valueOf(storedTime.get(0))));
+        score2Points.setText(storedPoints.get(1).toString());
+        score2time.setText(timeStringBuilder(String.valueOf(storedTime.get(1))));
+        score3Points.setText(storedPoints.get(2).toString());
+        score3time.setText(timeStringBuilder(String.valueOf(storedTime.get(2))));
+        score4Points.setText(storedPoints.get(3).toString());
+        score4time.setText(timeStringBuilder(String.valueOf(storedTime.get(3))));
+
+
+
+
+//        score1time.setText(storedTime.toString());
+//        score1Points.setText(storedPoints.toString());
         System.out.println(storedPoints);
         System.out.println(storedTime);
         //highScoreBuilder(storedPoints, storedTime);
@@ -206,14 +231,15 @@ public class HighScoreScreen extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    private void highScoreBuilder(List points, List times) {
-        ArrayList<String[]> listOfArrayList = new ArrayList<String[]>();
+    public String timeStringBuilder(String initTime){
+        int miliTime = Integer.parseInt(initTime);
+        int secs = (int) (miliTime / 1000);
+        int mins = secs / 60;
+        secs = secs % 60;
+        String newTime = ("" + mins + "m "
+                + String.format("%02d", secs) + "s ");
+        System.out.println(newTime);
 
-
-        for (int i = 0; i < points.size(); i++) {
-            listOfArrayList.add(new String[]{points.get(i).toString(), times.get(i).toString()});
-            System.out.println(listOfArrayList.toString());
-
-        }
+       return newTime;
     }
 }

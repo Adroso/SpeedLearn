@@ -29,17 +29,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="@string/dummy_button"
+                android:visibility="gone" />
 
         </LinearLayout>
     </FrameLayout>
-
-    <TextView
-        android:text="High Scores"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/fullscreen_content"
@@ -54,23 +48,120 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <TextView
-            android:text="Points"
+            android:text="High Scores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/score1Points"
+            android:id="@+id/textView"
             android:textAlignment="center"
-            android:textSize="30dp" />
+            android:textSize="50dp" />
 
-        <TextView
-            android:text="Time"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/score1Time"
-            android:textAlignment="center"
-            android:textSize="20dp" />
+            android:gravity="center">
+
+            <TextView
+                android:text="Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score1Points"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp" />
+
+            <TextView
+                android:text="Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score1Time"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:text="Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score2Points"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:text="Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score2Time"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:text="Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score3Points"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:text="Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score3Time"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:text="Points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score4Points"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+            <TextView
+                android:text="Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/score4Time"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <!-- This FrameLayout insets its children based on system windows using

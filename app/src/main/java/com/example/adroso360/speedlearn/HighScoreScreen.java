@@ -133,15 +133,6 @@ public class HighScoreScreen extends AppCompatActivity {
         }
         cursor.close();
 
-// testing if this can be done as one Cursor
-//        Cursor cursorTime = db.rawQuery("SELECT points time FROM scores ORDER BY points, time ASC", null);
-//        List storedTime = new ArrayList<>();
-//        while(cursorTime.moveToNext()) {
-//            String itemTime = cursorTime.getString(0);
-//            storedTime.add(itemTime);
-//        }
-//        cursor.close();
-
         Cursor cursorTime = db.rawQuery("SELECT time FROM scores", null);
         List storedTime = new ArrayList<>();
         while(cursorTime.moveToNext()) {

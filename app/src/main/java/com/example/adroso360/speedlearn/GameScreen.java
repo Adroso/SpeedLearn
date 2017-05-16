@@ -3,6 +3,7 @@ package com.example.adroso360.speedlearn;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -447,6 +448,9 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void gameOver(){
+        SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        Boolean socialSetting = prefs.getBoolean("socialOption", true);
+        System.out.println("Current Social Setting is:" + socialSetting);
         gridNumbers = (GridLayout)findViewById(R.id.gridNumbers);
         instructionText = (TextView)findViewById(R.id.instructionText);
         instructionText.setVisibility(View.GONE);

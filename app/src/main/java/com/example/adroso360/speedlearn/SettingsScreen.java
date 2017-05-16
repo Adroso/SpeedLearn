@@ -113,13 +113,16 @@ public class SettingsScreen extends AppCompatActivity {
         socialSwitch = (Switch)findViewById(R.id.socialSwitch);
         final SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
         editor.putBoolean("socialOption", true );
+        editor.apply();
         socialSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (socialSwitch.isChecked()){
                     editor.putBoolean("socialOption", true );
+                    editor.apply();
                 } else {
-                    editor.putBoolean("socialOption", true );
+                    editor.putBoolean("socialOption", false );
+                    editor.apply();
                 }
 
             }

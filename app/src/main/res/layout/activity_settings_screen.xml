@@ -70,7 +70,8 @@
             android:paddingTop="20dp"
             android:textSize="20sp"
             android:thumbTint="@android:color/holo_green_light"
-            android:trackTint="@android:color/holo_green_light" />
+            android:trackTint="@android:color/holo_green_light"
+            android:id="@+id/musicSwtich" />
 
         <Switch
             android:text="Social Media"

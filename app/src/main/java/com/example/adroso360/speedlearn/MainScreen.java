@@ -3,6 +3,7 @@ package com.example.adroso360.speedlearn;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -90,8 +91,8 @@ public class MainScreen extends AppCompatActivity {
     private Button playButton;
     private Button settingsButton;
     private Button highScroesButton;
-    private SoundHelper soundHelper;
-    private int bgMusic;
+    public static MediaPlayer mediaPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,13 +123,9 @@ public class MainScreen extends AppCompatActivity {
         settingsButton = (Button)findViewById(R.id.settingsButton);
         highScroesButton = (Button)findViewById(R.id.highScoreButton);
 
-//        soundHelper = new SoundHelper();
-//        bgMusic = soundHelper.addSound(R.raw.bgmusic, this);
-//        soundHelper.play(bgMusic, 1);
+        //plays background music if option is selected.
+        checkSound();
 
-        //Media Player Used as SoundPool only handles short sounds
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.bgmusic);
-        mediaPlayer.start();
 
 
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -206,5 +203,20 @@ public class MainScreen extends AppCompatActivity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    private void checkSound(){
+        SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        Boolean musicOption = prefs.getBoolean("musicOption", true);
+
+        if(musicOption){
+            //Media Player Used as SoundPool only handles short sounds
+            mediaPlayer = MediaPlayer.create(this, R.raw.bgmusic);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        } else {
+            mediaPlayer.stop();
+        }
+
     }
 }

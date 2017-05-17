@@ -2,6 +2,7 @@ package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -86,6 +87,7 @@ public class SettingsScreen extends AppCompatActivity {
     };
 
     private Switch socialSwitch;
+    private Switch musicSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,8 @@ public class SettingsScreen extends AppCompatActivity {
         // while interacting with the UI.
 
         socialSwitch = (Switch)findViewById(R.id.socialSwitch);
+        musicSwitch = (Switch)findViewById(R.id.musicSwtich);
+
         final SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
         editor.putBoolean("socialOption", true );
         editor.apply();
@@ -123,6 +127,20 @@ public class SettingsScreen extends AppCompatActivity {
                 } else {
                     editor.putBoolean("socialOption", false );
                     editor.apply();
+                }
+
+            }
+        });
+        musicSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (musicSwitch.isChecked()){
+                    editor.putBoolean("musicOption", true );
+                    editor.apply();
+                } else {
+                    editor.putBoolean("musicOption", false );
+                    editor.apply();
+                    MainScreen.mediaPlayer.stop();
                 }
 
             }

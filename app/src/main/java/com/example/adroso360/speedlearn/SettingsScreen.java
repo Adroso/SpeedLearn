@@ -1,14 +1,8 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import android.widget.Toast;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -105,13 +98,11 @@ public class SettingsScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /** Fullscreen Methods**/
         setContentView(R.layout.activity_settings_screen);
-
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-
-
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,19 +110,19 @@ public class SettingsScreen extends AppCompatActivity {
                 toggle();
             }
         });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
 
+        /** Finding Buttons in View **/
         socialSwitch = (Switch)findViewById(R.id.socialSwitch);
         musicSwitch = (Switch)findViewById(R.id.musicSwtich);
         buttonMenu = (Button)findViewById(R.id.buttonMenu);
 
         final SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
 
-        //editor.putBoolean("socialOption", true );
-        //editor.apply();
+        /** Listener Section **/
+
         socialSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -145,23 +136,19 @@ public class SettingsScreen extends AppCompatActivity {
             }
         });
 
-
-        //editor.putBoolean("musicOption", true );
-        //editor.apply();
-
         musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     editor.putBoolean("musicOption", true );
                     editor.apply();
+
                     //catches an error if no sound was playing
                     try {
                         MainScreen.mediaPlayer.start();
                     }catch (NullPointerException e){
                         System.out.println("Error With Playing Music");
                     }
-
 
                 } else {
                     editor.putBoolean("musicOption", false );
@@ -184,10 +171,11 @@ public class SettingsScreen extends AppCompatActivity {
             }
         });
 
+        /** Saving the Switch Status for View **/
+
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean musicOption = prefs.getBoolean("musicOption", true);
         Boolean socialOption = prefs.getBoolean("socialOption", true);
-
         musicSwitch.setChecked(musicOption);
         socialSwitch.setChecked(socialOption);
 

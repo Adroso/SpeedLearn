@@ -69,7 +69,8 @@
             android:checked="true"
             android:paddingTop="20dp"
             android:textSize="20sp"
-            android:thumbTint="@android:color/holo_green_light" />
+            android:thumbTint="@android:color/holo_green_light"
+            android:trackTint="@android:color/holo_green_light" />
 
         <Switch
             android:text="Social Media"
@@ -80,7 +81,8 @@
             android:checked="true"
             android:textSize="20sp"
             android:paddingTop="20dp"
-            android:thumbTint="@android:color/holo_blue_light" />
+            android:thumbTint="@android:color/holo_blue_light"
+            android:trackTint="@android:color/holo_blue_bright" />
     </LinearLayout>
 
     <!-- This FrameLayout insets its children based on system windows using

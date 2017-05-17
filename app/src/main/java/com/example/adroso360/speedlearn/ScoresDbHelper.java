@@ -24,7 +24,7 @@ public class ScoresDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS {scores}");
+        db.execSQL("DROP TABLE IF EXISTS scores");
         onCreate(db);
     }
 

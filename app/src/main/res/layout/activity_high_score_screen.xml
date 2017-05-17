@@ -96,7 +96,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Points"
+                android:text="0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score1Points"
@@ -106,7 +106,7 @@
                 android:textColor="@android:color/holo_orange_dark" />
 
             <TextView
-                android:text="Time"
+                android:text="0:00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score1Time"
@@ -125,7 +125,6 @@
             >
 
             <TextView
-                android:text="Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score2Points"
@@ -134,7 +133,6 @@
                 android:padding="10dp"/>
 
             <TextView
-                android:text="Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score2Time"
@@ -150,7 +148,6 @@
             android:gravity="center">
 
             <TextView
-                android:text="Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score3Points"
@@ -159,7 +156,6 @@
                 android:padding="10dp"/>
 
             <TextView
-                android:text="Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score3Time"
@@ -175,7 +171,6 @@
             android:gravity="center">
 
             <TextView
-                android:text="Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score4Points"
@@ -184,7 +179,6 @@
                 android:padding="10dp"/>
 
             <TextView
-                android:text="Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score4Time"
@@ -200,7 +194,6 @@
             android:gravity="center">
 
             <TextView
-                android:text="Points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score5Points"
@@ -209,7 +202,6 @@
                 android:padding="10dp"/>
 
             <TextView
-                android:text="Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score5Time"

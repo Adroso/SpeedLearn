@@ -59,7 +59,8 @@
             android:textAlignment="center"
             android:textSize="40dp"
             android:fontFamily="casual"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:paddingTop="20dp" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

@@ -54,11 +54,12 @@
             android:text="Settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
+            android:id="@+id/settingsTitle"
             android:textAlignment="center"
             android:textSize="40dp"
             android:fontFamily="casual"
-            android:textStyle="normal|bold"/>
+            android:textStyle="normal|bold"
+            android:paddingTop="20dp" />
 
         <Switch
             android:text="Game Music"

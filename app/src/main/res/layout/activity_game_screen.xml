@@ -59,14 +59,16 @@
             android:id="@+id/gameTime"
             android:textSize="24sp"
             android:gravity="center"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:text="Find The Value Of y"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/instructionText"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textStyle="normal|bold" />
 
         <TextView
             android:text="..."
@@ -88,13 +90,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonTwitter"
+            style="@android:style/Widget.Holo.Button"
             android:gravity="center"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:backgroundTint="@android:color/holo_blue_light"/>
 
         <Button
             android:text="Main Menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@android:style/Widget.Holo.Button"
             android:id="@+id/buttonMenu"
             android:gravity="center"
             android:visibility="gone" />
@@ -111,36 +116,82 @@
         android:id="@+id/gridNumbers">
 
         <Button android:text="1"
-            android:id="@+id/button1" />
+            android:id="@+id/button1"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="2"
-            android:id="@+id/button2" />
+            android:id="@+id/button2"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="3"
-            android:id="@+id/button3" />
+            android:id="@+id/button3"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="4"
-            android:id="@+id/button4" />
+            android:id="@+id/button4"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="5"
-            android:id="@+id/button5" />
+            android:id="@+id/button5"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="6"
-            android:id="@+id/button6" />
+            android:id="@+id/button6"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="7"
-            android:id="@+id/button7" />
+            android:id="@+id/button7"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold" />
         <Button android:text="8"
-            android:id="@+id/button8" />
+            android:id="@+id/button8"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="9"
-            android:id="@+id/button9" />
+            android:id="@+id/button9"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold"/>
         <Button android:text="0"
-            android:id="@+id/button0" />
+            android:id="@+id/button0"
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:textStyle="normal|bold" />
 
         <Button
             android:text="Enter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonEnter" />
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:id="@+id/buttonEnter"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textStyle="normal|bold"
+            android:textSize="20sp" />
         <Button
             android:text="Clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonClear" />
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:id="@+id/buttonClear"
+            android:backgroundTint="@android:color/holo_red_light" />
 
 
     </GridLayout>
@@ -150,9 +201,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/countDown"
-        android:textSize="100sp"
+        android:textSize="130sp"
         android:layout_gravity="center"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textStyle="normal|bold"
+        android:fontFamily="sans-serif"
+        android:textAllCaps="false" />
 
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->

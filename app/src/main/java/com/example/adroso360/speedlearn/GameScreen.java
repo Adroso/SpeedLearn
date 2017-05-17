@@ -110,6 +110,7 @@ public class GameScreen extends AppCompatActivity {
     private TextView gameTime;
     private TextView instructionText;
     private TextView playerAnswerDisplay;
+    private TextView hintText;
     private String[] generatedQuestion;
     private int questionCount;
     private int playerScore;
@@ -150,6 +151,7 @@ public class GameScreen extends AppCompatActivity {
     private int correctSound;
     private int wrongSound;
 
+    //Sensors
     private SensorManager shakeSensorManager;
     private float sensorAccel;
     private float sensorAccelCurrent;
@@ -196,6 +198,7 @@ public class GameScreen extends AppCompatActivity {
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
         countDown = (TextView)findViewById(R.id.countDown);
         gameTime = (TextView)findViewById(R.id.gameTime);
+        hintText = (TextView)findViewById(R.id.hintText);
         playerAnswerDisplay = (TextView)findViewById(R.id.playerAnswerDisplay);
         buttonTwitter = (Button) findViewById(R.id.buttonTwitter);
         buttonMenu = (Button)findViewById(R.id.buttonMenu);
@@ -303,6 +306,7 @@ public class GameScreen extends AppCompatActivity {
 
             }
         });
+        generatedQuestion = GameControl.getEquation();
 
         // Game Start CountDown Timer
         new CountDownTimer(5000, 1000) {
@@ -321,7 +325,6 @@ public class GameScreen extends AppCompatActivity {
                     public void run()
                     {
                         countDown.setVisibility(View.GONE);
-                        generatedQuestion = GameControl.getEquation();
                         currentQuestion.setText(generatedQuestion[0]);
 
                         //Starting the Timer
@@ -444,10 +447,12 @@ public class GameScreen extends AppCompatActivity {
         }else if(Objects.equals(generatedQuestion[1], userAnswer)){
             //Correct
             checkCanPlay(correctSound);
+            playerScore = playerScore + 1;
             generatedQuestion = GameControl.getEquation();
             currentQuestion.setText(generatedQuestion[0]);
             playerAnswerDisplay.setText("");
-            playerScore = playerScore + 1;
+            hintText.setText("");
+
 
         }else {
             //Incorrect
@@ -455,9 +460,10 @@ public class GameScreen extends AppCompatActivity {
             generatedQuestion = GameControl.getEquation();
             currentQuestion.setText(generatedQuestion[0]);
             playerAnswerDisplay.setText("");
-            System.out.println("INCORRECT");
+            hintText.setText("");
         }
         questionCount = questionCount + 1;
+
 
     }
     @Override
@@ -521,9 +527,7 @@ public class GameScreen extends AppCompatActivity {
 
             //number for sensorAccel is the shaken amount threshold (higher equals more shake)
             if (sensorAccel > 6) {
-                System.out.println("Shaking");
-
-
+                hintText.setText(hintGenerator());
             }
         }
 
@@ -541,6 +545,16 @@ public class GameScreen extends AppCompatActivity {
     protected void onPause() {
         shakeSensorManager.unregisterListener(mSensorListener);
         super.onPause();
+    }
+
+    private String hintGenerator(){
+        int number = Integer.parseInt(generatedQuestion[1]);
+        if ((number & 1) == 0) {
+            return "Even Number";
+        } else {
+            return "Odd Number";
+        }
+
     }
 
 }

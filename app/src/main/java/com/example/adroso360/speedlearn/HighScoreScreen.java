@@ -92,6 +92,8 @@ public class HighScoreScreen extends AppCompatActivity {
         }
     };
 
+    /** Variables **/
+
     private ScoresDbHelper scoresDB;
     private TextView score1Points;
     private TextView score1time;
@@ -108,14 +110,11 @@ public class HighScoreScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        /** Fullscreen Methods **/
         setContentView(R.layout.activity_high_score_screen);
-
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-
-
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,14 +122,14 @@ public class HighScoreScreen extends AppCompatActivity {
                 toggle();
             }
         });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
-        /** Code **/
+        /** My Code **/
 
+        /** Finding Views **/
         score1Points = (TextView)findViewById(R.id.score1Points);
         score1time = (TextView)findViewById(R.id.score1Time);
         score2Points = (TextView)findViewById(R.id.score2Points);
@@ -143,8 +142,13 @@ public class HighScoreScreen extends AppCompatActivity {
         score5time = (TextView)findViewById(R.id.score5Time);
         buttonMenu = (Button)findViewById(R.id.buttonMenu);
 
+
+        /** DataBase Section **/
+
         scoresDB = new ScoresDbHelper(this);
         SQLiteDatabase db = scoresDB.getReadableDatabase();
+
+        /** Queries that get both points and time to be used for sorting **/
 
         Cursor cursor = db.rawQuery("SELECT points FROM scores ORDER BY points DESC", null);
         List storedPoints = new ArrayList<>();
@@ -242,6 +246,8 @@ public class HighScoreScreen extends AppCompatActivity {
     }
 
     public String timeStringBuilder(String initTime){
+        /** Takes the raw millisecond value from the DB
+         * and formats it into minutes and seconds **/
         int miliTime = Integer.parseInt(initTime);
         int secs = (int) (miliTime / 1000);
         int mins = secs / 60;

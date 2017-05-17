@@ -20,9 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-
 import android.widget.TextView;
-
 import java.util.Objects;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -104,7 +102,7 @@ public class GameScreen extends AppCompatActivity {
         }
     };
 
-
+    /** Variable Declarations **/
     public TextView currentQuestion;
     private TextView countDown;
     private TextView gameTime;
@@ -163,13 +161,11 @@ public class GameScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /** Fullscreen Methods **/
         setContentView(R.layout.activity_game_screen);
-
         mVisible = false;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-
-
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,11 +173,11 @@ public class GameScreen extends AppCompatActivity {
                 toggle();
             }
         });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
         /** Initialize Sensors**/
         shakeSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         shakeSensorManager.registerListener(mSensorListener, shakeSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
@@ -308,6 +304,9 @@ public class GameScreen extends AppCompatActivity {
         });
         generatedQuestion = GameControl.getEquation();
 
+        /** Game has a countdown till the first question is displayed
+         * Then after Go! is displayed user can start the game while being timed.
+         */
 
         // Game Start CountDown Timer
         new CountDownTimer(5000, 1000) {
@@ -413,6 +412,7 @@ public class GameScreen extends AppCompatActivity {
     };
 
     private void updatePlayerInput(String inputChange){
+        /** Handles when player uses the grid buttons **/
         if (Objects.equals(inputChange, "CLEAR")){
             playerAnswerDisplay.setText("");
         } else {
@@ -422,9 +422,11 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void evaluateAnswer(String userAnswer){
+        /** Run When player hits enter to
+         * determine the next action of the game **/
 
         if (questionCount == 10){
-            playerAnswerDisplay.setText("Game Finished");
+            playerAnswerDisplay.setText(R.string.gameFinished);
             String tmpTime = String.valueOf(updatedTime);
             currentQuestion.setText(tmpTime);
             timerHandler.removeCallbacks(gameTimer);
@@ -467,6 +469,7 @@ public class GameScreen extends AppCompatActivity {
 
 
     }
+    /** Used for the Post to Twitter Function **/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
         if (requestCode == AUTHENTICATE && resultCode == RESULT_OK) {
@@ -507,6 +510,9 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void checkCanPlay(int soundID){
+        /** Checks if the user has the music option on/off to determine if
+         * sound effects should be played
+         */
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean musicSetting = prefs.getBoolean("musicOption", true);
         if (musicSetting){
@@ -516,6 +522,7 @@ public class GameScreen extends AppCompatActivity {
 
     }
     private final SensorEventListener mSensorListener = new SensorEventListener() {
+        /** Detects Shakes from the Accelerometer **/
 
         public void onSensorChanged(SensorEvent se) {
             float x = se.values[0];

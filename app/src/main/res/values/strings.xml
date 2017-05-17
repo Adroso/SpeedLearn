@@ -11,4 +11,5 @@
     <string name="title_activity_game_screen">GameScreen</string>
 
     <string name="title_activity_authenticate">Authenticate</string>
+    <string name="gameFinished">Game Finished</string>
 </resources>

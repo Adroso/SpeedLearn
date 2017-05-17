@@ -148,6 +148,7 @@ public class GameScreen extends AppCompatActivity {
     private int wrongSound;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +174,9 @@ public class GameScreen extends AppCompatActivity {
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         /** Game Code **/
+        soundHelper = new SoundHelper();
+        correctSound = soundHelper.addSound(R.raw.sectionpass,this);
+        wrongSound = soundHelper.addSound(R.raw.sectionfail,this);
 
         currentQuestion = (TextView)findViewById(R.id.currentQuestion);
         countDown = (TextView)findViewById(R.id.countDown);
@@ -314,10 +318,7 @@ public class GameScreen extends AppCompatActivity {
             }
         }.start();
 
-        //sound
-        soundHelper = new SoundHelper();
-        correctSound = soundHelper.addSound(R.raw.sectionpass,this);
-        wrongSound = soundHelper.addSound(R.raw.sectionfail,this);
+
 
     }
 
@@ -402,6 +403,7 @@ public class GameScreen extends AppCompatActivity {
     }
 
     private void evaluateAnswer(String userAnswer){
+
         if (questionCount == 10){
             playerAnswerDisplay.setText("Game Finished");
             String tmpTime = String.valueOf(updatedTime);
@@ -426,6 +428,7 @@ public class GameScreen extends AppCompatActivity {
 
         }else if(Objects.equals(generatedQuestion[1], userAnswer)){
             //Correct
+            checkCanPlay(correctSound);
             generatedQuestion = GameControl.getEquation();
             currentQuestion.setText(generatedQuestion[0]);
             playerAnswerDisplay.setText("");
@@ -433,6 +436,7 @@ public class GameScreen extends AppCompatActivity {
 
         }else {
             //Incorrect
+            checkCanPlay(wrongSound);
             generatedQuestion = GameControl.getEquation();
             currentQuestion.setText(generatedQuestion[0]);
             playerAnswerDisplay.setText("");
@@ -476,6 +480,16 @@ public class GameScreen extends AppCompatActivity {
         buttonMenu.setVisibility(View.VISIBLE);
 
         currentQuestion.setText("You Got " + playerScore + " Questions");
+
+
+    }
+
+    private void checkCanPlay(int soundID){
+        SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        Boolean musicSetting = prefs.getBoolean("musicOption", true);
+        if (musicSetting){
+            soundHelper.play(soundID);
+        }
 
 
     }

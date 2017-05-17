@@ -21,9 +21,9 @@ public class SoundHelper {
         return pool.load(context, resID,1);
     }
 
-    public void play(int soundID, int loop){
+    public void play(int soundID){
+        System.out.println("i played");
         pool.play(soundID, 1,1,1,0,1);
-        System.out.println("RUNNNNNNNNNNNNNNNNNNNNNNN");
 
 
     }

@@ -213,7 +213,6 @@ public class MainScreen extends AppCompatActivity {
     public void checkSound(){
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean musicOption = prefs.getBoolean("musicOption", true);
-        //System.out.println("Music Option" + musicOption);
 
         if(musicOption){
             //Media Player Used as SoundPool only handles short sounds

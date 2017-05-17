@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 
 /**
@@ -116,36 +117,60 @@ public class SettingsScreen extends AppCompatActivity {
         musicSwitch = (Switch)findViewById(R.id.musicSwtich);
 
         final SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
-        editor.putBoolean("socialOption", true );
-        editor.apply();
-        socialSwitch.setOnClickListener(new View.OnClickListener() {
+
+        //editor.putBoolean("socialOption", true );
+        //editor.apply();
+        socialSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (socialSwitch.isChecked()){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
                     editor.putBoolean("socialOption", true );
                     editor.apply();
                 } else {
                     editor.putBoolean("socialOption", false );
                     editor.apply();
                 }
-
             }
         });
-        musicSwitch.setOnClickListener(new View.OnClickListener() {
+
+
+        //editor.putBoolean("musicOption", true );
+        //editor.apply();
+
+        musicSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                if (musicSwitch.isChecked()){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
                     editor.putBoolean("musicOption", true );
                     editor.apply();
-                    MainScreen.mediaPlayer.start();
+                    //catches an error if no sound was playing
+                    try {
+                        MainScreen.mediaPlayer.start();
+                    }catch (NullPointerException e){
+                        System.out.println("Error With Playing Music");
+                    }
+
+
                 } else {
                     editor.putBoolean("musicOption", false );
                     editor.apply();
-                    MainScreen.mediaPlayer.pause();
+                    try {
+                        MainScreen.mediaPlayer.pause();
+                    } catch (NullPointerException e){
+                        System.out.println("Error Plaing Music");
+                    }
                 }
 
             }
         });
+
+        SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
+        Boolean musicOption = prefs.getBoolean("musicOption", true);
+        Boolean socialOption = prefs.getBoolean("socialOption", true);
+
+        musicSwitch.setChecked(musicOption);
+        socialSwitch.setChecked(socialOption);
+
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
     }

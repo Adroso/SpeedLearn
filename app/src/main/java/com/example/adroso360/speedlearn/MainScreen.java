@@ -123,7 +123,11 @@ public class MainScreen extends AppCompatActivity {
         settingsButton = (Button)findViewById(R.id.settingsButton);
         highScroesButton = (Button)findViewById(R.id.highScoreButton);
 
-        //plays background music if option is selected.
+        //plays background music if option is selected
+        // and accounts for background music already playing.
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
         checkSound();
 
 
@@ -209,13 +213,14 @@ public class MainScreen extends AppCompatActivity {
     public void checkSound(){
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean musicOption = prefs.getBoolean("musicOption", true);
+        //System.out.println("Music Option" + musicOption);
 
         if(musicOption){
             //Media Player Used as SoundPool only handles short sounds
             mediaPlayer = MediaPlayer.create(this, R.raw.bgmusic);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
-        } else {
+        } else if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
 

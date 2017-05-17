@@ -1,7 +1,9 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -120,8 +122,14 @@ public class MainScreen extends AppCompatActivity {
         settingsButton = (Button)findViewById(R.id.settingsButton);
         highScroesButton = (Button)findViewById(R.id.highScoreButton);
 
-        soundHelper = new SoundHelper(this);
-        bgMusic = soundHelper.addSound(R.raw.bgmusic);
+//        soundHelper = new SoundHelper();
+//        bgMusic = soundHelper.addSound(R.raw.bgmusic, this);
+//        soundHelper.play(bgMusic, 1);
+
+        //Media Player Used as SoundPool only handles short sounds
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.bgmusic);
+        mediaPlayer.start();
+
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override

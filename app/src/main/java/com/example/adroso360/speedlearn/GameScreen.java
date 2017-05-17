@@ -315,9 +315,9 @@ public class GameScreen extends AppCompatActivity {
         }.start();
 
         //sound
-        soundHelper = new SoundHelper(this);
-        correctSound = soundHelper.addSound(R.raw.sectionpass);
-        wrongSound = soundHelper.addSound(R.raw.sectionfail);
+        soundHelper = new SoundHelper();
+        correctSound = soundHelper.addSound(R.raw.sectionpass,this);
+        wrongSound = soundHelper.addSound(R.raw.sectionfail,this);
 
     }
 

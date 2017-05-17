@@ -10,21 +10,20 @@ import android.media.SoundPool;
 
 public class SoundHelper {
     private SoundPool pool;
-    private Context context;
-
-    public SoundHelper(Context context){
+    public SoundHelper(){
         SoundPool.Builder builder = new SoundPool.Builder();
         builder.setMaxStreams(6);
         pool = builder.build();
 
 
     }
-    public int addSound(int resID){
+    public int addSound(int resID, Context context){
         return pool.load(context, resID,1);
     }
 
     public void play(int soundID, int loop){
-        pool.play(soundID, 1,1,1,loop,1);
+        pool.play(soundID, 1,1,1,0,1);
+        System.out.println("RUNNNNNNNNNNNNNNNNNNNNNNN");
 
 
     }

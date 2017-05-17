@@ -172,6 +172,7 @@ public class MainScreen extends AppCompatActivity {
 
     private void hide() {
         // Hide UI first
+        //checkSound();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -205,7 +206,7 @@ public class MainScreen extends AppCompatActivity {
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
 
-    private void checkSound(){
+    public void checkSound(){
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean musicOption = prefs.getBoolean("musicOption", true);
 

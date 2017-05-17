@@ -137,10 +137,11 @@ public class SettingsScreen extends AppCompatActivity {
                 if (musicSwitch.isChecked()){
                     editor.putBoolean("musicOption", true );
                     editor.apply();
+                    MainScreen.mediaPlayer.start();
                 } else {
                     editor.putBoolean("musicOption", false );
                     editor.apply();
-                    MainScreen.mediaPlayer.stop();
+                    MainScreen.mediaPlayer.pause();
                 }
 
             }

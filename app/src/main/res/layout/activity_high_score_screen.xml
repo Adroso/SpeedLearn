@@ -52,12 +52,12 @@
         >
 
         <TextView
-            android:text="High Scores"
+            android:text="@string/high_scores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
             android:textAlignment="center"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:fontFamily="casual"
             android:textStyle="normal|bold"
             android:paddingTop="20dp" />
@@ -68,7 +68,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="Points"
+                android:text="@string/points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pointsLabel"
@@ -78,7 +78,7 @@
                 android:textStyle="normal|bold" />
 
             <TextView
-                android:text="Time"
+                android:text="@string/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/timeLabel"
@@ -96,7 +96,7 @@
             android:gravity="center">
 
             <TextView
-                android:text="0"
+                android:text="@string/_0n"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score1Points"
@@ -106,7 +106,7 @@
                 android:textColor="@android:color/holo_orange_dark" />
 
             <TextView
-                android:text="0:00"
+                android:text="@string/_0_00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/score1Time"
@@ -212,7 +212,7 @@
         </LinearLayout>
 
         <Button
-            android:text="Main Menu"
+            android:text="@string/main_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@android:style/Widget.Holo.Button"

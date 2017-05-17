@@ -56,7 +56,7 @@
         android:layout_height="320dp" />
 
     <Button
-        android:text="Play Game"
+        android:text="@string/play_game"
         android:layout_height="wrap_content"
         android:id="@+id/playButton"
         android:textAlignment="center"
@@ -66,7 +66,7 @@
         android:background="@android:color/holo_blue_dark" />
 
     <Button
-        android:text="High Scores"
+        android:text="@string/high_scoresn"
         android:layout_height="wrap_content"
         android:id="@+id/highScoreButton"
         android:layout_width="200dp"
@@ -77,7 +77,7 @@
         android:textColor="@android:color/background_light" />
 
     <Button
-        android:text="Settings"
+        android:text="@string/settings"
         android:layout_height="wrap_content"
         android:id="@+id/settingsButton"
         android:layout_width="200dp"

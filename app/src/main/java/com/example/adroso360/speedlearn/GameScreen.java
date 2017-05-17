@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 import android.widget.TextView;
+
 import java.util.Objects;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -147,6 +150,11 @@ public class GameScreen extends AppCompatActivity {
     private int correctSound;
     private int wrongSound;
 
+    private SensorManager shakeSensorManager;
+    private float sensorAccel;
+    private float sensorAccelCurrent;
+    private float sensorAccelLast;
+
 
 
     @Override
@@ -172,6 +180,13 @@ public class GameScreen extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        /** Initialize Sensors**/
+        shakeSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        shakeSensorManager.registerListener(mSensorListener, shakeSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+        sensorAccel = 0.00f;
+        sensorAccelCurrent = SensorManager.GRAVITY_EARTH;
+        sensorAccelLast = SensorManager.GRAVITY_EARTH;
+
 
         /** Game Code **/
         soundHelper = new SoundHelper();
@@ -492,6 +507,40 @@ public class GameScreen extends AppCompatActivity {
         }
 
 
+    }
+    private final SensorEventListener mSensorListener = new SensorEventListener() {
+
+        public void onSensorChanged(SensorEvent se) {
+            float x = se.values[0];
+            float y = se.values[1];
+            float z = se.values[2];
+            sensorAccelLast = sensorAccelCurrent;
+            sensorAccelCurrent = (float) Math.sqrt((double) (x*x + y*y + z*z));
+            float delta = sensorAccelCurrent - sensorAccelLast;
+            sensorAccel = sensorAccel * 0.9f + delta;
+
+            //number for sensorAccel is the shaken amount threshold (higher equals more shake)
+            if (sensorAccel > 6) {
+                System.out.println("Shaking");
+
+
+            }
+        }
+
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shakeSensorManager.registerListener(mSensorListener, shakeSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        shakeSensorManager.unregisterListener(mSensorListener);
+        super.onPause();
     }
 
 }

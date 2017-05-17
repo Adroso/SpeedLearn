@@ -59,16 +59,17 @@
             android:id="@+id/gameTime"
             android:textSize="24sp"
             android:gravity="center"
-            android:paddingTop="10dp"
+            android:paddingTop="20dp"
             android:textStyle="normal|bold" />
 
         <TextView
-            android:text="Find The Value Of y"
+            android:text="Find The Value Of y | Shake For A Hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/instructionText"
             android:textAlignment="center"
-            android:textStyle="normal|bold" />
+            android:textStyle="normal|bold"
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:text="..."
@@ -83,7 +84,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/playerAnswerDisplay"
             android:textSize="20sp"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textStyle="normal|bold" />
 
         <Button
             android:text="Post Score To Twitter"

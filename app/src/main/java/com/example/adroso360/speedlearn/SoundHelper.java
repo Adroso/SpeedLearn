@@ -22,7 +22,6 @@ public class SoundHelper {
     }
 
     public void play(int soundID){
-        System.out.println("i played");
         pool.play(soundID, 1,1,1,0,1);
 
 

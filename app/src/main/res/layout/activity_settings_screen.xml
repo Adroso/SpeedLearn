@@ -84,6 +84,14 @@
             android:paddingTop="20dp"
             android:thumbTint="@android:color/holo_blue_light"
             android:trackTint="@android:color/holo_blue_bright" />
+        <Button
+            android:text="Main Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@android:style/Widget.Holo.Button"
+            android:id="@+id/buttonMenu"
+            android:gravity="center"
+            android:layout_marginTop="50dp" />
     </LinearLayout>
 
     <!-- This FrameLayout insets its children based on system windows using

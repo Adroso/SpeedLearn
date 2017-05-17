@@ -1,6 +1,7 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -101,6 +103,7 @@ public class HighScoreScreen extends AppCompatActivity {
     private TextView score4time;
     private TextView score5Points;
     private TextView score5time;
+    private Button buttonMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +141,7 @@ public class HighScoreScreen extends AppCompatActivity {
         score4time = (TextView)findViewById(R.id.score4Time);
         score5Points = (TextView)findViewById(R.id.score5Points);
         score5time = (TextView)findViewById(R.id.score5Time);
+        buttonMenu = (Button)findViewById(R.id.buttonMenu);
 
         scoresDB = new ScoresDbHelper(this);
         SQLiteDatabase db = scoresDB.getReadableDatabase();
@@ -173,6 +177,14 @@ public class HighScoreScreen extends AppCompatActivity {
         } catch (Exception e){
             System.out.println("Empty Entries in DB");
         }
+
+        buttonMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HighScoreScreen.this, MainScreen.class));
+
+            }
+        });
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.adroso360.speedlearn;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -89,6 +91,7 @@ public class SettingsScreen extends AppCompatActivity {
 
     private Switch socialSwitch;
     private Switch musicSwitch;
+    private Button buttonMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +118,7 @@ public class SettingsScreen extends AppCompatActivity {
 
         socialSwitch = (Switch)findViewById(R.id.socialSwitch);
         musicSwitch = (Switch)findViewById(R.id.musicSwtich);
+        buttonMenu = (Button)findViewById(R.id.buttonMenu);
 
         final SharedPreferences.Editor editor = getSharedPreferences("SETTINGS", MODE_PRIVATE).edit();
 
@@ -160,6 +164,14 @@ public class SettingsScreen extends AppCompatActivity {
                         System.out.println("Error Plaing Music");
                     }
                 }
+
+            }
+        });
+
+        buttonMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingsScreen.this, MainScreen.class));
 
             }
         });

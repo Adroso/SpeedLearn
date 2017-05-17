@@ -57,7 +57,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView"
             android:textAlignment="center"
-            android:textSize="50dp" />
+            android:textSize="40dp"
+            android:fontFamily="casual"
+            android:textStyle="normal|bold" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -71,7 +73,9 @@
                 android:id="@+id/pointsLabel"
                 android:textAlignment="center"
                 android:textSize="30dp"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_orange_dark" />
 
             <TextView
                 android:text="Time"
@@ -80,7 +84,9 @@
                 android:id="@+id/timeLabel"
                 android:textAlignment="center"
                 android:textSize="30dp"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textStyle="normal|bold"
+                android:textColor="@android:color/holo_orange_dark" />
 
         </LinearLayout>
 

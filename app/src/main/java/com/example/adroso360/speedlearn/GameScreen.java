@@ -308,6 +308,7 @@ public class GameScreen extends AppCompatActivity {
         });
         generatedQuestion = GameControl.getEquation();
 
+
         // Game Start CountDown Timer
         new CountDownTimer(5000, 1000) {
 

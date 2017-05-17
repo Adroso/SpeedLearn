@@ -88,6 +88,8 @@ public class MainScreen extends AppCompatActivity {
         }
     };
 
+    /** Variable Declarations **/
+
     private Button playButton;
     private Button settingsButton;
     private Button highScroesButton;
@@ -98,13 +100,11 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /** Fullscreen Methods**/
         setContentView(R.layout.activity_main_screen);
-
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
-
-
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,17 +112,19 @@ public class MainScreen extends AppCompatActivity {
                 toggle();
             }
         });
-
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
         /** Start of Main Code**/
+
+        /** Finding Views **/
         playButton = (Button)findViewById(R.id.playButton);
         settingsButton = (Button)findViewById(R.id.settingsButton);
         highScroesButton = (Button)findViewById(R.id.highScoreButton);
 
+        /** Music Handler **/
         //plays background music if option is selected
         // and accounts for background music already playing.
         if (mediaPlayer != null) {
@@ -131,7 +133,7 @@ public class MainScreen extends AppCompatActivity {
         checkSound();
 
 
-
+        /** Listener Section **/
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,6 +213,8 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void checkSound(){
+        /** checkSound checks if the preferences allow the music to be played **/
+
         SharedPreferences prefs = getSharedPreferences("SETTINGS", MODE_PRIVATE);
         Boolean musicOption = prefs.getBoolean("musicOption", true);
 

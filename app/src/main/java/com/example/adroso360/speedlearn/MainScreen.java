@@ -88,6 +88,9 @@ public class MainScreen extends AppCompatActivity {
     private Button playButton;
     private Button settingsButton;
     private Button highScroesButton;
+    private SoundHelper soundHelper;
+    private int bgMusic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +119,9 @@ public class MainScreen extends AppCompatActivity {
         playButton = (Button)findViewById(R.id.playButton);
         settingsButton = (Button)findViewById(R.id.settingsButton);
         highScroesButton = (Button)findViewById(R.id.highScoreButton);
+
+        soundHelper = new SoundHelper(this);
+        bgMusic = soundHelper.addSound(R.raw.bgmusic);
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override

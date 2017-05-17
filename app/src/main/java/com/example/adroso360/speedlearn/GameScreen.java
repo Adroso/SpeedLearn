@@ -142,6 +142,11 @@ public class GameScreen extends AppCompatActivity {
     private static final int AUTHENTICATE = 1;
     Twitter twitter = TwitterFactory.getSingleton();
 
+    //Sound
+    private SoundHelper soundHelper;
+    private int correctSound;
+    private int wrongSound;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -308,6 +313,11 @@ public class GameScreen extends AppCompatActivity {
 
             }
         }.start();
+
+        //sound
+        soundHelper = new SoundHelper(this);
+        correctSound = soundHelper.addSound(R.raw.sectionpass);
+        wrongSound = soundHelper.addSound(R.raw.sectionfail);
 
     }
 
